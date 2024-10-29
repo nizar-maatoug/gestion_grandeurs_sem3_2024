@@ -13,6 +13,8 @@ from channels.routing import ProtocolTypeRouter
 
 from django.core.asgi import get_asgi_application
 
+from mqtt_topics.consumers import GrandeurMqttConsumer
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gestion_grandeurs.settings')
 
 django.setup()
@@ -20,6 +22,7 @@ django.setup()
 # application = get_asgi_application()
 application = ProtocolTypeRouter({
     'http': get_asgi_application(),
+    'mqtt': GrandeurMqttConsumer().as_asgi(),    
 })
 
 
