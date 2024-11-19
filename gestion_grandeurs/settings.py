@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     # business application
     'grandeurs.apps.GrandeursConfig',
     'website.apps.WebsiteConfig',
-    'mqtt_topics.apps.MqttTopicsConfig',    
+    'mqtt_topics.apps.MqttTopicsConfig', 
+    'dashboard.apps.DashboardConfig',  
+    'persistence.apps.PersistenceConfig',
 ]
 
 ASGI_APPLICATION = 'gestion_grandeurs.asgi.application'
@@ -129,3 +131,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        #"BACKEND": "channels_redis.core.RedisChannelLayer",
+        #"CONFIG": {
+        #   "hosts": [("redis://default:MI6VR6wwnZ3eN5N2ES0p4MbiwAtTN6HN@redis-15650.c228.us-central1-1.gce.redns.redis-cloud.com:15650", 15650)],           
+        #},
+    },
+}
+
+
+
